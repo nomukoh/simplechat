@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     try:
         print("Received event:", json.dumps(event))
 
-        # Cognitoで認証されたユーザー情報を取得（必要なら）
+        # Cognitoで認証されたユーザー情報を取得
         user_info = None
         if 'requestContext' in event and 'authorizer' in event['requestContext']:
             user_info = event['requestContext']['authorizer']['claims']
@@ -30,7 +30,7 @@ def lambda_handler(event, context):
         data = json.dumps(payload).encode('utf-8')
 
         # FastAPI のエンドポイントURLを環境変数から取得
-        FASTAPI_URL = os.environ.get("FASTAPI_URL")
+        FASTAPI_URL = os.environ.get("https://8a59-35-221-31-166.ngrok-free.app")
         if not FASTAPI_URL:
             raise Exception("Missing FASTAPI_URL environment variable")
 
